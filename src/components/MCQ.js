@@ -1,6 +1,10 @@
 import React from "react";
 
-const MCQ = ({ ques }) => {
+const MCQ = ({ ques, saveAnswer }) => {
+  const handleAnswer = (event) => {
+    let answer = event.target.value;
+    saveAnswer(ques.question, answer);
+  };
   return (
     <div>
       <h2>Choose the correct option.</h2>
@@ -8,7 +12,12 @@ const MCQ = ({ ques }) => {
 
       {ques.answer_choices.map((option, index) => (
         <div className="option">
-          <input type="radio" name="answer" value={option} />
+          <input
+            type="radio"
+            name="answer"
+            value={option}
+            onChange={handleAnswer}
+          />
           <label htmlFor={option}>{option}</label>
         </div>
       ))}

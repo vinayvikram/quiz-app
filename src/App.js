@@ -6,18 +6,16 @@ import SideNavigation from "./components/SideNavigation";
 import FileUploader from "./components/FileUploader";
 import "./App.css";
 import changeQuestionIndex from "./lib/changeQuestionIndex";
+import { getScore } from "./lib/getScore";
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestionIndex, setQuestionIndex] = useState(0);
+  const [currentQuestionIndex, setQuestionIndex] = useState(4);
   const [selectedAnswers, addAnswers] = useState({});
   const [totalTime, setTotalTime] = useState(0);
 
-  console.log(totalTime);
-
   const saveAnswer = (question, answer) => {
     addAnswers((currentAnswers) => ({ ...currentAnswers, [question]: answer }));
-    console.log(selectedAnswers);
   };
 
   const handleIndexChange = (change) => {
@@ -27,6 +25,10 @@ const App = () => {
       currentQuestionIndex,
       questions.length - 1
     );
+  };
+
+  const submit = () => {
+    console.log(getScore(questions, selectedAnswers));
   };
 
   return (
@@ -49,6 +51,7 @@ const App = () => {
           saveAnswer={saveAnswer}
         />
         <BottomNavigation handleChange={handleIndexChange} />
+        <button onClick={submit}>Submit</button>
       </div>
     </div>
   );
