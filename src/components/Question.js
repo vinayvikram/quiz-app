@@ -1,10 +1,10 @@
 import React from "react";
 import { selectQuestionComponent } from "../lib/selectQuestionComponent";
 
-const Question = ({ questionDetail, saveAnswer }) => {
+const Question = ({ questionNumber, questionDetail, saveAnswer }) => {
   return (
     <div className="container">
-      {selectQuestionComponent(questionDetail, saveAnswer)}
+      {questionNumber} . {selectQuestionComponent(questionDetail, saveAnswer)}
     </div>
   );
 };

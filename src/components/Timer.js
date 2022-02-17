@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 const Timer = ({ totalTime }) => {
-  const [timeLeft, setTimeLeft] = useState(totalTime);
+  const [timeLeft, setTimeLeft] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    setTimeLeft(totalTime);
+    const interval = setInterval(() => {
       setTimeLeft((timeLeft) => (timeLeft > 0 ? timeLeft - 1 : 0));
     }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, [totalTime]);
 
   return (

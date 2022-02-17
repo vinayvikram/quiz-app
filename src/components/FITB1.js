@@ -9,7 +9,7 @@ const FITB1 = ({ ques, saveAnswer }) => {
         type="text"
         className="answerBlank"
         placeholder="Type your answer here"
-        onChange={(event) => saveAnswer(ques.question, event.target.value)}
+        onChange={(event) => saveAnswer(ques.question, [event.target.value])}
       />
     </div>
   );

@@ -2,46 +2,54 @@ import React, { useState } from "react";
 import Question from "./components/Question";
 import Timer from "./components/Timer";
 import BottomNavigation from "./components/BottomNavigation";
+import SideNavigation from "./components/SideNavigation";
 import FileUploader from "./components/FileUploader";
 import "./App.css";
-import { extractAnswers } from "./lib/extractAnswers";
+import changeQuestionIndex from "./lib/changeQuestionIndex";
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setQuestionIndex] = useState(0);
-  const correctAnswers = extractAnswers(questions);
-  const selectedAnswers = {};
-  const totalTime = questions.reduce((sum, item) => sum + item.time, 0) || 0;
+  const [selectedAnswers, addAnswers] = useState({});
+  const [totalTime, setTotalTime] = useState(0);
+
+  console.log(totalTime);
 
   const saveAnswer = (question, answer) => {
-    console.log("answered");
-    selectedAnswers[question] = answer;
+    addAnswers((currentAnswers) => ({ ...currentAnswers, [question]: answer }));
     console.log(selectedAnswers);
   };
 
-  const changeQuestionIndex = (change) => {
-    if (
-      change.type === "increment" &&
-      currentQuestionIndex < questions.length - 1
-    ) {
-      setQuestionIndex((index) => index + 1);
-    }
-    if (change.type === "decrement" && currentQuestionIndex > 0) {
-      setQuestionIndex((index) => index - 1);
-    }
-
-    return;
+  const handleIndexChange = (change) => {
+    changeQuestionIndex(
+      change,
+      setQuestionIndex,
+      currentQuestionIndex,
+      questions.length - 1
+    );
   };
 
   return (
     <div className="app">
-      <FileUploader setQuestions={setQuestions} />
-      <Timer totalTime={totalTime} />
-      <Question
-        questionDetail={questions[currentQuestionIndex]}
-        saveAnswer={saveAnswer}
-      />
-      <BottomNavigation handleChange={changeQuestionIndex} />
+      <FileUploader setQuestions={setQuestions} setTotalTime={setTotalTime} />
+      <div id="sideColumn">
+        <h1>Quiz</h1>
+        <SideNavigation
+          questions={questions}
+          handleChange={handleIndexChange}
+          currentIndex={currentQuestionIndex}
+        />
+        <div className="footer"> Designed By Vinay Vikram </div>
+      </div>
+      <div id="mainColumn">
+        <Timer totalTime={totalTime} />
+        <Question
+          questionNumber={currentQuestionIndex + 1}
+          questionDetail={questions[currentQuestionIndex]}
+          saveAnswer={saveAnswer}
+        />
+        <BottomNavigation handleChange={handleIndexChange} />
+      </div>
     </div>
   );
 };

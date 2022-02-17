@@ -1,8 +1,85 @@
 .app {
   display: flex;
   flex: 1;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
+}
+
+#sideColumn {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+#sideColumn > h1 {
+  flex: 1;
+  border: 2px solid black;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.footer {
+  flex: 1;
+  border: 2px solid black;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.sideNavigation {
+  flex: 5;
+  border: 2px solid black;
+  margin: 1rem;
+  padding: 0.5rem;
+  overflow: auto;
+}
+
+.scrollBox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.numberBox {
+  height: 50px;
+  width: 50px;
+  background-color: #fb8500;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mainColumn {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+#overlay {
+  position: fixed;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.uploader {
+  border: 2px solid black;
+  padding: 20px;
+  margin: 20px;
+  background-color: #90e0ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.uploader > input,
+.uploader > button {
+  margin-top: 10px;
 }
 
 .timer {
@@ -26,7 +103,8 @@
 
 .container {
   display: flex;
-  flex: 1;
+  border: 2px solid black;
+  flex: 5;
   background-color: #e0fbfc;
   margin: 1rem;
   padding: 0.5rem;
@@ -76,9 +154,11 @@
 
 .bottomNavigation {
   display: flex;
+  flex: 1;
   flex-direction: row;
   justify-content: space-between;
   margin: 1rem;
+  padding: 0.5rem;
 }
 
 .button {

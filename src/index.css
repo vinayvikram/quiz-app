@@ -10,6 +10,13 @@ body {
   background-color: #98c1d9;
 }
 
+#root {
+  display: block;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
