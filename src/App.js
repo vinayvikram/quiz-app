@@ -7,12 +7,14 @@ import FileUploader from "./components/FileUploader";
 import "./App.css";
 import changeQuestionIndex from "./lib/changeQuestionIndex";
 import { getScore } from "./lib/getScore";
+import ScoreCard from "./components/ScoreCard";
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setQuestionIndex] = useState(4);
   const [selectedAnswers, addAnswers] = useState({});
   const [totalTime, setTotalTime] = useState(0);
+  const [score, setScore] = useState(0);
 
   const saveAnswer = (question, answer) => {
     addAnswers((currentAnswers) => ({ ...currentAnswers, [question]: answer }));
@@ -28,7 +30,8 @@ const App = () => {
   };
 
   const submit = () => {
-    console.log(getScore(questions, selectedAnswers));
+    setScore(getScore(questions, selectedAnswers));
+    document.getElementById("scoreCard").style.display = "flex";
   };
 
   return (
@@ -48,10 +51,12 @@ const App = () => {
         <Question
           questionNumber={currentQuestionIndex + 1}
           questionDetail={questions[currentQuestionIndex]}
+          selectedAnswers={selectedAnswers}
           saveAnswer={saveAnswer}
         />
         <BottomNavigation handleChange={handleIndexChange} submit={submit} />
       </div>
+      <ScoreCard score={score} total={questions.length} />
     </div>
   );
 };

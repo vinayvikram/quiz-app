@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const MTF = ({ ques, saveAnswer }) => {
+const MTF = ({ ques, saveAnswer, selectedAnswer = {} }) => {
   const [names, setNames] = useState([]);
   const [options, setOptions] = useState([]);
 
@@ -36,11 +36,16 @@ const MTF = ({ ques, saveAnswer }) => {
       <div className="matchBox">
         <div className="matchColumn" onChange={handleAnswers}>
           {names.map((item, index) => (
-            <div className="matchText" name={item}>
+            <div className="matchText" name={item} key={index}>
               {index + 1}.{item}
-              <select className="matchDropdown">
+              <select
+                className="matchDropdown"
+                defaultValue={
+                  item in selectedAnswer ? selectedAnswer[item] : options[0]
+                }
+              >
                 {options.map((item, index) => (
-                  <option value={item}>
+                  <option value={item} key={index}>
                     {String.fromCharCode(65 + index)}
                   </option>
                 ))}

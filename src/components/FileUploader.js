@@ -30,7 +30,11 @@ const FileUploader = ({ setQuestions, setTotalTime }) => {
       .then((res) => {
         console.log(res);
         setQuestions(res);
-        setTotalTime(res.reduce((sum, item) => sum + item.time, 0));
+        const totalTime = res.reduce((sum, item) => sum + item.time, 0);
+        setTotalTime(totalTime);
+        setTimeout(() => {
+          document.getElementById("submit").click();
+        }, totalTime * 1000);
         document.getElementById("overlay").style.display = "none";
       });
   };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const MCQ = ({ ques, saveAnswer }) => {
+const MCQ = ({ ques, saveAnswer, selectedAnswer = "" }) => {
   const handleAnswer = (event) => {
     let answer = event.target.value;
     saveAnswer(ques.question, answer);
@@ -17,6 +17,7 @@ const MCQ = ({ ques, saveAnswer }) => {
             name="answer"
             value={option}
             onChange={handleAnswer}
+            defaultChecked={option === selectedAnswer}
           />
           <label htmlFor={option}>{option}</label>
         </div>

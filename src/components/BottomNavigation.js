@@ -12,7 +12,7 @@ const BottomNavigation = ({ handleChange, submit }) => {
         <div className="buttonSymbol">&lt;</div>
         <div className="buttonText">Previous</div>
       </div>
-      <div className="button" onClick={submit}>
+      <div className="button" onClick={submit} id="submit">
         <div className="buttonText">Submit</div>
       </div>
       <div className="button" onClick={nextQuestion}>

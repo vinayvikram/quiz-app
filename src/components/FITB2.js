@@ -1,6 +1,6 @@
 import React from "react";
 
-const FITB2 = ({ ques, saveAnswer }) => {
+const FITB2 = ({ ques, saveAnswer, selectedAnswer = [] }) => {
   const handleAnswers = (event) => {
     let value1 = document.getElementById("blank1").value;
     let value2 = document.getElementById("blank2").value;
@@ -15,6 +15,7 @@ const FITB2 = ({ ques, saveAnswer }) => {
         className="answerBlank"
         id="blank1"
         placeholder="Type your first answer here"
+        value={selectedAnswer.length > 0 ? selectedAnswer[0] : ""}
         onChange={handleAnswers}
       />
       <input
@@ -22,6 +23,7 @@ const FITB2 = ({ ques, saveAnswer }) => {
         className="answerBlank"
         id="blank2"
         placeholder="Type your second answer here"
+        value={selectedAnswer.length > 0 ? selectedAnswer[1] : ""}
         onChange={handleAnswers}
       />
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const MAQ = ({ ques, saveAnswer }) => {
+const MAQ = ({ ques, saveAnswer, selectedAnswer = [] }) => {
   const handleAnswers = (event) => {
     let options = document.getElementsByClassName("option");
     let answers = [];
@@ -23,7 +23,13 @@ const MAQ = ({ ques, saveAnswer }) => {
             className="option"
             name={option}
             value={option}
+            key={option}
             onChange={handleAnswers}
+            defaultChecked={
+              selectedAnswer.length > 0 && selectedAnswer.includes(option)
+                ? true
+                : false
+            }
           />
           <label htmlFor={option}>{option}</label>
         </div>

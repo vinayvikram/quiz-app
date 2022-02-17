@@ -1,6 +1,6 @@
 import React from "react";
 
-const FITB1 = ({ ques, saveAnswer }) => {
+const FITB1 = ({ ques, saveAnswer, selectedAnswer = [] }) => {
   return (
     <div className="questionBox">
       <h2>Fill in the given blank.</h2>
@@ -9,6 +9,7 @@ const FITB1 = ({ ques, saveAnswer }) => {
         type="text"
         className="answerBlank"
         placeholder="Type your answer here"
+        value={selectedAnswer[0]}
         onChange={(event) => saveAnswer(ques.question, [event.target.value])}
       />
     </div>
