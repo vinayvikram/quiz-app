@@ -1,4 +1,4 @@
-const BottomNavigation = ({ handleChange }) => {
+const BottomNavigation = ({ handleChange, submit }) => {
   const previousQuestion = () => {
     handleChange({ type: "decrement" });
   };
@@ -11,6 +11,9 @@ const BottomNavigation = ({ handleChange }) => {
       <div className="button" onClick={previousQuestion}>
         <div className="buttonSymbol">&lt;</div>
         <div className="buttonText">Previous</div>
+      </div>
+      <div className="button" onClick={submit}>
+        <div className="buttonText">Submit</div>
       </div>
       <div className="button" onClick={nextQuestion}>
         <div className="buttonText">Next</div>

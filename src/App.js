@@ -50,8 +50,7 @@ const App = () => {
           questionDetail={questions[currentQuestionIndex]}
           saveAnswer={saveAnswer}
         />
-        <BottomNavigation handleChange={handleIndexChange} />
-        <button onClick={submit}>Submit</button>
+        <BottomNavigation handleChange={handleIndexChange} submit={submit} />
       </div>
     </div>
   );
