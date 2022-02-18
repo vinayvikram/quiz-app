@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Quiz App - Create a quiz using JSON File.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## View this app
 
-In the project directory, you can run:
+This app has been deployed @ [create-quiz.vercel.app](https://create-quiz.vercel.app)
 
-### `npm start`
+## Using this app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Open [the app](https://create-quiz.vercel.app) in your browser.
+   ![Screenshot 1](/screenshots/screenshot1.png)
+2. Select and upload a JSON file containing questions as shown below.
+   ![Screenshot 2](/screenshots/screenshot2.png)
+3. Start the quiz by clicking on 'Start Quiz' button.
+   ![Screenshot 2](/screenshots/screenshot2.png)
+4. It will redirect you to the quiz app with all the questions feeded and timer set.
+   ![Screenshot 3](/screenshots/screenshot3.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## JSON Configuration File
 
-### `npm test`
+The app will require JSON file with questions in a specified format as shown below.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Sample JSON File](/screenshots/screenshot4.png)
 
-### `npm run build`
+Note that the types for questions must be provided as follows:-
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Fill in the blank with one blank - **FITB1**
+- Fill in the blank with two blank - **FITB2**
+- Multiple answers question - **MAQ**
+- Multiple choice question - **MCQ**
+- Match the following - **MTF**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+For detailed view of format of questions and answers format, refer the above image.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This repo contains a sample JSON file as [config.json](/config.json). You can download it for testing this app.
 
-### `npm run eject`
+## More about the functionality
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Questions answered will be saved as you type or tick and will be shown in green color boxes in the side navigation.
+2. Questions not answered will be shown in red color boxes in the the side navigation.
+3. You can navigate to next and previous question using bottom navigation.
+4. You can directly jump around the questions using side navigation.
+5. Your answers will be submitted and evaluated automatically when the time will be up.
+6. You can also submit your answer by clicking on green submit button.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contribution
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This app has basic functionality and styling which can be improved further. You are most welcome to contribute in this project.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You download this repo and run `npm install` to install all the dependencies, then run `npm start` to get started with the development. That's it.
