@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 const FileUploader = ({ setQuestions, setTotalTime }) => {
-  const [isUploading, setIsUploading] = useState(true);
+  const [isUploaded, setIsUploaded] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
   var [url, setUrl] = useState(null);
 
   const handleUpload = (event) => {
     const file = event.target.files[0];
-
+    setIsSelected(true);
     fetch(
       "https://www.filestackapi.com/api/store/S3?key=Aomson5K0Smm19ZMYKha2z",
       {
@@ -17,7 +18,7 @@ const FileUploader = ({ setQuestions, setTotalTime }) => {
       .then((response) => response.json())
       .then((result) => {
         setUrl(result.url);
-        setIsUploading(false);
+        setIsUploaded(true);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -43,8 +44,11 @@ const FileUploader = ({ setQuestions, setTotalTime }) => {
     <div id="overlay">
       <div className="uploader">
         <h3>Please upload a JSON file containing questions to continue.</h3>
-        <input type="file" onChange={handleUpload} />
-        <button onClick={fetchData} disabled={isUploading ? true : false}>
+        <div className="chooser">
+          <input type="file" onChange={handleUpload} />
+          {isSelected && !isUploaded && <p>Loading questions...</p>}
+        </div>
+        <button onClick={fetchData} className={isUploaded ? "" : "disabled"}>
           Start Quiz
         </button>
       </div>
