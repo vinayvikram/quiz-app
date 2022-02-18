@@ -49,7 +49,7 @@ const selectQuestionComponent = (question, saveAnswer, selectedAnswers) => {
     );
   }
 
-  return "No Questions Found";
+  return <h2>No Questions Found</h2>;
 };
 
 export { selectQuestionComponent };

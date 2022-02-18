@@ -8,8 +8,10 @@ const FITB2 = ({ ques, saveAnswer, selectedAnswer = [] }) => {
   };
   return (
     <div className="questionBox">
-      <h2>Fill in the given blank.</h2>
-      <span className="question">{ques.question}</span>
+      <h2>Fill in the given blanks.</h2>
+      <span className="question">
+        {ques.question.replace(/\{\}/g, "__________")}.
+      </span>
       <input
         type="text"
         className="answerBlank"

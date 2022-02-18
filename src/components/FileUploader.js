@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 
-const FileUploader = ({ setQuestions, setTotalTime }) => {
+const FileUploader = ({ setQuestions, setTotalTime, setIndex }) => {
   const [isUploaded, setIsUploaded] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-  var [url, setUrl] = useState(null);
+  const [isError, setIsError] = useState(false);
+  const [url, setUrl] = useState(null);
 
   const handleUpload = (event) => {
     const file = event.target.files[0];
+    setIsError(false);
     setIsSelected(true);
+    setIsUploaded(false);
     fetch(
       "https://www.filestackapi.com/api/store/S3?key=Aomson5K0Smm19ZMYKha2z",
       {
@@ -20,24 +23,24 @@ const FileUploader = ({ setQuestions, setTotalTime }) => {
         setUrl(result.url);
         setIsUploaded(true);
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .catch((error) => setIsError(true));
   };
 
   const fetchData = () => {
     fetch(url)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setQuestions(res);
+        setIndex(0);
         const totalTime = res.reduce((sum, item) => sum + item.time, 0);
         setTotalTime(totalTime);
+
         setTimeout(() => {
           document.getElementById("submit").click();
         }, totalTime * 1000);
         document.getElementById("overlay").style.display = "none";
-      });
+      })
+      .catch((error) => setIsError(true));
   };
 
   return (
@@ -47,8 +50,13 @@ const FileUploader = ({ setQuestions, setTotalTime }) => {
         <div className="chooser">
           <input type="file" onChange={handleUpload} />
           {isSelected && !isUploaded && <p>Loading questions...</p>}
+          {isSelected && isError && <p>Please upload correct file.</p>}
         </div>
-        <button onClick={fetchData} className={isUploaded ? "" : "disabled"}>
+        <button
+          onClick={fetchData}
+          className={isUploaded && !isError ? "" : "disabled"}
+          disabled={isUploaded && !isError ? false : true}
+        >
           Start Quiz
         </button>
       </div>

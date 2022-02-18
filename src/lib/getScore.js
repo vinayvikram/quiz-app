@@ -6,11 +6,17 @@ const getScore = (questions, selectedAnswers) => {
     let question = ques.question;
 
     if (type === "FITB1" && question in selectedAnswers) {
-      totalScore += ques.answers[0] === selectedAnswers[question][0] ? 1 : null;
+      totalScore +=
+        ques.answers[0].toLowerCase() ===
+        selectedAnswers[question][0].trim().toLowerCase()
+          ? 1
+          : null;
     } else if (type === "FITB2" && question in selectedAnswers) {
       totalScore +=
-        ques.answers[0] === selectedAnswers[question][0] &&
-        ques.answers[1] === selectedAnswers[question][1]
+        ques.answers[0].toLowerCase() ===
+          selectedAnswers[question][0].trim().toLowerCase() &&
+        ques.answers[1].toLowerCase() ===
+          selectedAnswers[question][1].trim().toLowerCase()
           ? 1
           : 0;
     } else if (type === "MCQ" && question in selectedAnswers) {

@@ -8,10 +8,11 @@ import "./App.css";
 import changeQuestionIndex from "./lib/changeQuestionIndex";
 import { getScore } from "./lib/getScore";
 import ScoreCard from "./components/ScoreCard";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestionIndex, setQuestionIndex] = useState(4);
+  const [currentQuestionIndex, setQuestionIndex] = useState(NaN);
   const [selectedAnswers, addAnswers] = useState({});
   const [totalTime, setTotalTime] = useState(0);
   const [score, setScore] = useState(0);
@@ -36,15 +37,20 @@ const App = () => {
 
   return (
     <div className="app">
-      <FileUploader setQuestions={setQuestions} setTotalTime={setTotalTime} />
+      <FileUploader
+        setQuestions={setQuestions}
+        setTotalTime={setTotalTime}
+        setIndex={setQuestionIndex}
+      />
       <div id="sideColumn">
         <h1>Quiz</h1>
         <SideNavigation
           questions={questions}
           handleChange={handleIndexChange}
           currentIndex={currentQuestionIndex}
+          selectedAnswers={selectedAnswers}
         />
-        <div className="footer"> Designed By Vinay Vikram </div>
+        <Footer />
       </div>
       <div id="mainColumn">
         <Timer totalTime={totalTime} />
@@ -53,6 +59,7 @@ const App = () => {
           questionDetail={questions[currentQuestionIndex]}
           selectedAnswers={selectedAnswers}
           saveAnswer={saveAnswer}
+          totalQuestions={questions.length}
         />
         <BottomNavigation handleChange={handleIndexChange} submit={submit} />
       </div>

@@ -12,24 +12,19 @@ const MAQ = ({ ques, saveAnswer, selectedAnswer = [] }) => {
     saveAnswer(ques.question, answers);
   };
   return (
-    <div>
+    <div className="questionBox">
       <h2>Tick the correct options.</h2>
-      <span className="question">{ques.question}</span>
+      <span className="question">{ques.question}.</span>
 
       {ques.answer_choices.map((option, index) => (
-        <div className="option">
+        <div className="option" key={option}>
           <input
             type="checkbox"
             className="option"
             name={option}
             value={option}
-            key={option}
             onChange={handleAnswers}
-            defaultChecked={
-              selectedAnswer.length > 0 && selectedAnswer.includes(option)
-                ? true
-                : false
-            }
+            defaultChecked={selectedAnswer.includes(option) ? true : false}
           />
           <label htmlFor={option}>{option}</label>
         </div>

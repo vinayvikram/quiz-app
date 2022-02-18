@@ -30,22 +30,24 @@ const MTF = ({ ques, saveAnswer, selectedAnswer = {} }) => {
   };
 
   return (
-    <div>
+    <div className="questionBox">
       <h2>Choose the correct option.</h2>
-      <span className="question">{ques.question}</span>
+      <span className="question">{ques.question}.</span>
       <div className="matchBox">
         <div className="matchColumn" onChange={handleAnswers}>
-          {names.map((item, index) => (
-            <div className="matchText" name={item} key={index}>
-              {index + 1}.{item}
+          {names.map((name, index) => (
+            <div className="matchText" name={name} key={name}>
+              <span>
+                {index + 1}.{name}
+              </span>
               <select
                 className="matchDropdown"
                 defaultValue={
-                  item in selectedAnswer ? selectedAnswer[item] : options[0]
+                  name in selectedAnswer ? selectedAnswer[name] : options[0]
                 }
               >
-                {options.map((item, index) => (
-                  <option value={item} key={index}>
+                {options.map((option, index) => (
+                  <option value={option} key={option}>
                     {String.fromCharCode(65 + index)}
                   </option>
                 ))}
@@ -54,9 +56,9 @@ const MTF = ({ ques, saveAnswer, selectedAnswer = {} }) => {
           ))}
         </div>
         <div className="matchColumn">
-          {options.map((item, index) => (
-            <div className="matchText">
-              {String.fromCharCode(65 + index)}.{item}
+          {options.map((option, index) => (
+            <div className="matchText" key={option}>
+              {String.fromCharCode(65 + index)}.{option}
             </div>
           ))}
         </div>

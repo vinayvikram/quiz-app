@@ -6,12 +6,12 @@ const MCQ = ({ ques, saveAnswer, selectedAnswer = "" }) => {
     saveAnswer(ques.question, answer);
   };
   return (
-    <div>
+    <div className="questionBox">
       <h2>Choose the correct option.</h2>
-      <span className="question">{ques.question}</span>
+      <span className="question">{ques.question}.</span>
 
       {ques.answer_choices.map((option, index) => (
-        <div className="option">
+        <div className="option" key={option}>
           <input
             type="radio"
             name="answer"
