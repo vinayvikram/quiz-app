@@ -326,4 +326,8 @@ a {
   .hideText {
     display: none;
   }
+
+  .timerText {
+    font-size: large;
+  }
 }
