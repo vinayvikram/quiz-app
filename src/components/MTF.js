@@ -22,7 +22,7 @@ const MTF = ({ ques, saveAnswer, selectedAnswer = {} }) => {
     let answers = {};
     for (let dropdown of dropdowns) {
       let name = dropdown.getAttribute("name");
-      let option = dropdown.children[0].value;
+      let option = dropdown.children[1].value;
       answers[name] = option;
     }
 
