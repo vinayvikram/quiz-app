@@ -67,7 +67,7 @@ const FileUploader = ({ setQuestions, setTotalTime, setIndex }) => {
       .catch((error) => setIsError(true));
   };
   
-  const fetchSamleData = () => {
+  const fetchSampleData = () => {
     const res = sampleData;
     setQuestions(res);
     setIndex(0);
