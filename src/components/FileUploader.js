@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const sampleJSON = [
+const sampleData= [
   {
     "question": "India is {} largest country by population",
     "type": "FITB1",
@@ -66,6 +66,19 @@ const FileUploader = ({ setQuestions, setTotalTime, setIndex }) => {
       })
       .catch((error) => setIsError(true));
   };
+  
+  const fetchSamleData = () => {
+    const res = sampleData;
+    setQuestions(res);
+    setIndex(0);
+    const totalTime = res.reduce((sum, item) => sum + item.time, 0);
+    setTotalTime(totalTime);
+
+    setTimeout(() => {
+      document.getElementById("submit").click();
+    }, totalTime * 1000);
+    document.getElementById("overlay").style.display = "none";
+  };
 
   const fetchData = () => {
     fetch(url)
@@ -103,7 +116,7 @@ const FileUploader = ({ setQuestions, setTotalTime, setIndex }) => {
           Start Quiz
         </button>
            <button
-          onClick={() => setQuestions(sampleJSON)}
+          onClick={fetchSampleData}
            >
           Start Demo
         </button>
